@@ -9,6 +9,9 @@ ENV TERM="xterm" \
 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && php wp-cli.phar --info && mv wp-cli.phar /bin/wp-cli && chown nginx:nginx /bin/wp-cli
 
+ADD files/run-pre.sh /
+RUN chmod +x /run-pre.sh
+
 EXPOSE 80
 VOLUME ["/usr"]
 
