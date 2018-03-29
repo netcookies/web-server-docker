@@ -6,6 +6,10 @@ if [ ! -d /usr/html ] ; then
   mkdir -p /usr/html
 fi
 
+if [ -f "/usr/html/index.php" ]; then
+    exit 0
+fi
+
 if [ ! -z "$VNL_VERSION" ]; then
     echo 'The following environment variables need to set: VNL_VERSION '
     exit 1
@@ -20,5 +24,3 @@ find . -type f -exec chmod 644 {} \;
 chmod -R 777 conf/
 chmod -R 777 uploads/
 chmod -R 777 cache/
-
-rm -rf /run-pre.sh

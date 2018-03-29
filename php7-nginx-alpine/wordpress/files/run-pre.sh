@@ -6,6 +6,10 @@ if [ ! -d /usr/html ] ; then
   mkdir -p /usr/html
 fi
 
+if [ -f "/usr/html/index.php" ]; then
+    exit 0
+fi
+
 if [ -z "$DOMAIN" ]; then
     echo 'The following environment variables need to set: DOMAIN '
     exit 1
@@ -38,5 +42,3 @@ echo '    $_SERVER'"['HTTPS']='on';" >> wp-conf.php
 echo "if (isset("'$_SERVER'"['HTTP_X_FORWARDED_HOST'])) {" >> wp-conf.php
 echo '    $_SERVER'"['HTTP_HOST'] = "'$_SERVER'"['HTTP_X_FORWARDED_HOST'];" >> wp-conf.php
 echo "}" >> wp-conf.php
-
-rm -rf /run-pre.sh
