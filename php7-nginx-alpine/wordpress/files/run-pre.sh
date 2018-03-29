@@ -1,5 +1,7 @@
 #!/bin/sh
 
+ARG=" "
+
 if [ ! -d /usr/html ] ; then
   mkdir -p /usr/html
 fi
@@ -14,8 +16,16 @@ if [ -z "$EMAIL" ]; then
     exit 1
 fi
 
+if [ ! -z "$WP_VERSION" ]; then
+    ARG=$ARG"--version=${WP_VERSION} "
+fi
+
+if [ ! -z "$WP_LOCALE" ]; then
+    ARG=$ARG"--locale=${WP_LOCALE} "
+fi
+
 cd /usr/html
-wp-cli core download
+wp-cli core download $ARG
 wp-cli core config --dbname=${DB_NAME} --dbuser=${DB_USER} --dbpass=${DB_PASS} --dbhost=${DB_HOST} --dbprefix=wp_
 sleep 5
 wp-cli core install --url="http://${DOMAIN}" --title='Wordpress Stage' --admin_user="${DB_USER}" --admin_password="${DB_PASS}" --admin_email="${EMAIL}"
