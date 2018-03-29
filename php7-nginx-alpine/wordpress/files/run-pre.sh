@@ -28,3 +28,5 @@ echo '    $_SERVER'"['HTTPS']='on';" >> wp-conf.php
 echo "if (isset("'$_SERVER'"['HTTP_X_FORWARDED_HOST'])) {" >> wp-conf.php
 echo '    $_SERVER'"['HTTP_HOST'] = "'$_SERVER'"['HTTP_X_FORWARDED_HOST'];" >> wp-conf.php
 echo "}" >> wp-conf.php
+
+rm -rf /run-pre.sh
