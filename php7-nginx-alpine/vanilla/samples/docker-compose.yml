@@ -19,6 +19,7 @@ services:
      ports:
        - "9000:80"
      volumes:
+       - app_data:/usr/html
        - ./src/plugins:/usr/html/plugins
        - ./src/themes:/usr/html/themes
      restart: always
@@ -29,4 +30,5 @@ services:
        DB_PASS: vanilla
        VNL_VERSION: 2.5.1
 volumes:
+    app_data:
     db_data:

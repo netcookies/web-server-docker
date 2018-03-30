@@ -19,6 +19,7 @@ services:
      ports:
        - "8000:80"
      volumes:
+       - app_data:/usr/html
        - ./src/plugins:/usr/html/wp-content/plugins
        - ./src/themes:/usr/html/wp-content/themes
      restart: always
@@ -30,4 +31,5 @@ services:
        WP_DOMAIN: woo.hinterlands.tech
        WP_EMAIL: dev@hinterlands.tech
 volumes:
+    app_data:
     db_data:
