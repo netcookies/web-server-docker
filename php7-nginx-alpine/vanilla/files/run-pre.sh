@@ -19,7 +19,9 @@ fi
 echo "Start downloading..."
 wget -qO- -O tmp.zip  https://open.vanillaforums.com/get/vanilla-core-${VNL_VERSION}.zip && unzip tmp.zip && rm tmp.zip
 echo "Installing..."
-mv vanilla-*/* /usr/html && rm -r vanilla-*
+mv -n vanilla-*/plugins/* /usr/html/plugins
+mv -n vanilla-*/themes/* /usr/html/themes
+mv vanilla-*/* /usr/html && rm -rf /vanilla-*
 cd /usr/html
 find . -type d -exec chmod 755 {} \;
 find . -type f -exec chmod 644 {} \;
