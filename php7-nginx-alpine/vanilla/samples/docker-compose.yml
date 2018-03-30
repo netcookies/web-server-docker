@@ -6,29 +6,23 @@ services:
      volumes:
        - db_data:/var/lib/mysql
      restart: always
-     environment:
-       MYSQL_ROOT_PASSWORD: vanillaroot
-       MYSQL_DATABASE: vanilladb
-       MYSQL_USER: vanilla
-       MYSQL_PASSWORD: vanilla
+     env_file:
+       - env/mariadb.env
 
    vanilla:
      depends_on:
        - db
      image: hinterlands/vanilla
      ports:
-       - "9000:80"
+       - "8000:80"
      volumes:
        - app_data:/usr/html
        - ./src/plugins:/usr/html/plugins
        - ./src/themes:/usr/html/themes
      restart: always
-     environment:
-       DB_HOST: db:3306
-       DB_NAME: vanilladb
-       DB_USER: vanilla
-       DB_PASS: vanilla
-       VNL_VERSION: 2.5.1
+     env_file:
+       - env/vanilla.env
+
 volumes:
     app_data:
     db_data:

@@ -6,11 +6,8 @@ services:
      volumes:
        - db_data:/var/lib/mysql
      restart: always
-     environment:
-       MYSQL_ROOT_PASSWORD: wordpressroot
-       MYSQL_DATABASE: wordpressdb
-       MYSQL_USER: wordpress
-       MYSQL_PASSWORD: wordpress
+     env_file:
+       - env/mariadb.env
 
    wordpress:
      depends_on:
@@ -23,13 +20,9 @@ services:
        - ./src/plugins:/usr/html/wp-content/plugins
        - ./src/themes:/usr/html/wp-content/themes
      restart: always
-     environment:
-       DB_HOST: db:3306
-       DB_NAME: wordpressdb
-       DB_USER: wordpress
-       DB_PASS: wordpress
-       WP_DOMAIN: woo.hinterlands.tech
-       WP_EMAIL: dev@hinterlands.tech
+     env_file:
+       - env/wordpress.env
+
 volumes:
     app_data:
     db_data:
