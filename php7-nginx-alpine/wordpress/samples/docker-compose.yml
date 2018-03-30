@@ -27,7 +27,7 @@ services:
        DB_NAME: wordpressdb
        DB_USER: wordpress
        DB_PASS: wordpress
-       DOMAIN: woo.hinterlands.tech
-       EMAIL: dev@hinterlands.tech
+       WP_DOMAIN: woo.hinterlands.tech
+       WP_EMAIL: dev@hinterlands.tech
 volumes:
     db_data:
