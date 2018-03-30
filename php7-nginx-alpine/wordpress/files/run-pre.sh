@@ -30,15 +30,15 @@ fi
 
 cd /usr/html
 wp-cli core download $ARG
-while [ -f "/usr/html/wp-config.php" ]; do
+while [ ! -f "/usr/html/wp-config.php" ]; do
     wp-cli core config --dbname=${DB_NAME} --dbuser=${DB_USER} --dbpass=${DB_PASS} --dbhost=${DB_HOST} --dbprefix=wp_
     sleep 1
 done
-wp-cli core install --url="http://${WP_DOMAIN}" --title='Wordpress Stage' --admin_user="${DB_USER}" --admin_password="${DB_PASS}" --admin_email="${WP_EMAIL}"
 
-while [ $? -ne 0 ]; do
-    wp-cli core install --url="http://${WP_DOMAIN}" --title='Wordpress Stage' --admin_user="${DB_USER}" --admin_password="${DB_PASS}" --admin_email="${WP_EMAIL}"
-    sleep 2
+RESULT=1
+while [ $RESULT -ne 0 ]; do
+    RESULT=`wp-cli core install --url="http://${WP_DOMAIN}" --title='Wordpress Stage' --admin_user="${DB_USER}" --admin_password="${DB_PASS}" --admin_email="${WP_EMAIL}"`
+    sleep 1
 done
 
 echo "/**" >> wp-config.php
