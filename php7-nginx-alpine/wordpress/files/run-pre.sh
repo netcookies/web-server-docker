@@ -41,11 +41,12 @@ while [ $RESULT -ne 0 ]; do
     sleep 1
 done
 
-echo "/**" >> wp-config.php
-echo " * Handle SSL reverse proxy" >> wp-config.php
-echo " */" >> wp-config.php
-echo 'if ($_SERVER'"['HTTP_X_FORWARDED_PROTO'] == 'https')" >> wp-config.php
-echo '    $_SERVER'"['HTTPS']='on';" >> wp-config.php
-echo "if (isset("'$_SERVER'"['HTTP_X_FORWARDED_HOST'])) {" >> wp-config.php
-echo '    $_SERVER'"['HTTP_HOST'] = "'$_SERVER'"['HTTP_X_FORWARDED_HOST'];" >> wp-config.php
-echo "}" >> wp-config.php
+CONF="/**\n"
+CONF=${CONF}" * Handle SSL reverse proxy\n"
+CONF=${CONF}" */\n"
+CONF=${CONF}'if ($_SERVER'"['HTTP_X_FORWARDED_PROTO'] == 'https')\n"
+CONF=${CONF}'    $_SERVER'"['HTTPS']='on';\n"
+CONF=${CONF}"if (isset("'$_SERVER'"['HTTP_X_FORWARDED_HOST'])) {\n"
+CONF=${CONF}'    $_SERVER'"['HTTP_HOST'] = "'$_SERVER'"['HTTP_X_FORWARDED_HOST'];\n"
+CONF=${CONF}"}"
+sed -i "$(( $( wc -l < wp-config.php) -2 ))i\ ${CONF}" wp-config.php
