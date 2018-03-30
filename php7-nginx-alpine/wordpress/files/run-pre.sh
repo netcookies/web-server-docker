@@ -37,7 +37,7 @@ done
 
 RESULT=1
 while [ $RESULT -ne 0 ]; do
-    RESULT=`wp-cli core install --url="http://${WP_DOMAIN}" --title='Wordpress Stage' --admin_user="${DB_USER}" --admin_password="${DB_PASS}" --admin_email="${WP_EMAIL}"`
+    RESULT=`wp-cli core install --url="http://${WP_DOMAIN}" --title="Wordpress Stage" --admin_user="${DB_USER}" --admin_password="${DB_PASS}" --admin_email="${WP_EMAIL}" | grep -ic "error"`
     sleep 1
 done
 
