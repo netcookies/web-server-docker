@@ -16,11 +16,11 @@ if [ -z "$VNL_VERSION" ]; then
 fi
 
 
-cd /usr/html
 echo "Start downloading..."
 wget -qO- -O tmp.zip  https://open.vanillaforums.com/get/vanilla-core-${VNL_VERSION}.zip && unzip tmp.zip && rm tmp.zip
 echo "Installing..."
-mv vanilla-*/* . && rm -r vanilla-*
+mv vanilla-*/* /usr/html && rm -r vanilla-*
+cd /usr/html
 find . -type d -exec chmod 755 {} \;
 find . -type f -exec chmod 644 {} \;
 chmod -R 777 conf/
