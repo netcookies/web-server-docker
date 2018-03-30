@@ -17,7 +17,7 @@ fi
 
 
 cd /usr/html
-wget -qO- -O tmp.zip  https://open.vanillaforums.com/get/vanilla-core-${$VNL_VERSION}.zip && unzip tmp.zip && rm tmp.zip
+wget -qO- -O tmp.zip  https://open.vanillaforums.com/get/vanilla-core-${VNL_VERSION}.zip && unzip tmp.zip && rm tmp.zip
 mv vanilla-*/* . && rm -r vanilla-*
 find . -type d -exec chmod 755 {} \;
 find . -type f -exec chmod 644 {} \;
