@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+   db:
+     image: hinterlands/mariadb
+     volumes:
+       - db_data:/var/lib/mysql
+     restart: always
+     env_file:
+       - env/mariadb.env
+
+   vanilla:
+     depends_on:
+       - db
+     image: hinterlands/directus
+     ports:
+       - "8000:80"
+     volumes:
+       - app_data:/usr/html
+     restart: always
+     env_file:
+       - env/directus.env
+
+volumes:
+    app_data:
+    db_data:
