@@ -9,7 +9,7 @@ services:
      env_file:
        - env/mariadb.env
 
-   vanilla:
+   directus:
      depends_on:
        - db
      image: hinterlands/directus
