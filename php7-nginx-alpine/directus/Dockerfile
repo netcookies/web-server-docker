@@ -8,6 +8,10 @@ ENV TERM="xterm" \
     DB_PASS="" \
     VNL_VERSION=""
 
+RUN echo "font/truetype                    ttf;" >> /etc/nginx/mime.types && \
+    echo "font/opentype                    otf;" >> /etc/nginx/mime.types
+
+ADD files/nginx.conf /etc/nginx/
 ADD files/run-pre.sh /
 RUN chmod +x /run-pre.sh
 
