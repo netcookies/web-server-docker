@@ -8,8 +8,8 @@ ENV TERM="xterm" \
     DB_PASS="" \
     VNL_VERSION=""
 
-RUN echo "font/truetype                    ttf;" >> /etc/nginx/mime.types && \
-    echo "font/opentype                    otf;" >> /etc/nginx/mime.types
+RUN sed -i "$(( $( wc -l < /etc/nginx/mime.types) -10 ))i\ font/truetype                    ttf;" /etc/nginx/mime.types && \
+    sed -i "$(( $( wc -l < /etc/nginx/mime.types) -10 ))i\ font/opentype                    otf;" /etc/nginx/mime.types
 
 ADD files/nginx.conf /etc/nginx/
 ADD files/run-pre.sh /
