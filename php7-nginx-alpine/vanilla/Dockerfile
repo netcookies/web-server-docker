@@ -8,6 +8,7 @@ ENV TERM="xterm" \
     DB_PASS="" \
     VNL_VERSION=""
 
+ADD files/default.conf /etc/nginx/conf.d/
 ADD files/run-pre.sh /
 RUN chmod +x /run-pre.sh
 
