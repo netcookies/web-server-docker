@@ -35,6 +35,9 @@ fi
 if [ -z "$LOCAL_DEV" ]; then
     echo "The following environment variables hasn't been set: LOCAL_DEV. Fall back to default value: 1"
     LOCAL_DEV=1
+fi
+
+if [ "$LOCAL_DEV" -eq 1 ]; then
     WP_DOMAIN=http://localhost:8000
 fi
 
