@@ -17,8 +17,9 @@ services:
        - "8000:80"
      volumes:
        - app_data:/usr/html
-       - ./src/plugins:/usr/html/wp-content/plugins
-       - ./src/themes:/usr/html/wp-content/themes
+       - ${PWD}/src/plugins:/usr/html/wp-content/plugins
+       - ${PWD}/src/themes:/usr/html/wp-content/themes
+       - ${PWD}/db:/db
      restart: always
      env_file:
        - env/wordpress.env
