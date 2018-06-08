@@ -19,6 +19,7 @@ services:
        - app_data:/usr/html
        - ${PWD}/src/plugins:/usr/html/wp-content/plugins
        - ${PWD}/src/themes:/usr/html/wp-content/themes
+       - ${PWD}/src/uploads:/usr/html/wp-content/uploads
        - ${PWD}/db:/db
      restart: always
      env_file:
