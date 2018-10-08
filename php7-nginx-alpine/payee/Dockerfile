@@ -8,6 +8,10 @@ ENV TERM="xterm" \
     DB_PASS="" \
     PAYEE_VERSION=""
 
+RUN apk update && \
+    apk add php7-simplexml && \
+    rm -rf /var/cache/apk/*
+
 ADD files/default.conf /etc/nginx/conf.d/
 ADD files/run-pre.sh /
 RUN chmod +x /run-pre.sh
