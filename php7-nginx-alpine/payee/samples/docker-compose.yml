@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+   db:
+     image: hinterlands/mariadb
+     volumes:
+       - db_data:/var/lib/mysql
+     restart: always
+     env_file:
+       - env/mariadb.env
+
+   payee:
+     depends_on:
+       - db
+     image: hinterlands/vanilla
+     ports:
+       - "8000:80"
+     volumes:
+       - ${PWD}/src/site:/usr/html
+       - ${PWD}/db:/db
+     restart: always
+     env_file:
+       - env/payee.env
+     environment:
+       - LOCAL_DEV=0
+
+volumes:
+    app_data:
+    db_data:
