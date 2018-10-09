@@ -1,4 +1,4 @@
-FROM hinterlands/php7-nginx-alpine
+FROM hinterlands/php5-nginx-alpine
 LABEL maintainer "Andrew Li <andrew.li@hinterlands.tech>"
 
 ENV TERM="xterm" \
