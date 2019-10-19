@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+   db:
+     image: hinterlands/mariadb
+     volumes:
+       - db_data:/var/lib/mysql
+     restart: always
+     env_file:
+       - env/mariadb.env
+
+   vanilla:
+     depends_on:
+       - db
+     image: hinterlands/osticket
+     ports:
+       - "8000:80"
+     volumes:
+       - app_data:/usr/html
+       - ${PWD}/plugins:/usr/html/include/plugins
+       - ${PWD}/lang:/usr/html/include/i18n
+       - ${PWD}/themes:/themes
+       - ${PWD}/db:/db
+     restart: always
+     env_file:
+       - env/osticket.env
+
+volumes:
+    app_data:
+    db_data:
