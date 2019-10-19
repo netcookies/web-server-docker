@@ -15,7 +15,6 @@ RUN sed -i 's/cgi.fix_pathinfo=0/cgi.fix_pathinfo=1/g' /etc/php7/php.ini && \
 
 ADD files/default.conf /etc/nginx/conf.d/
 ADD files/run-pre.sh /
-ADD files/zh_CN.phar /
 RUN chmod +x /run-pre.sh
 
 EXPOSE 80
