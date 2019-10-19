@@ -39,7 +39,7 @@ echo "Start downloading..."
 wget https://github.com/osTicket/osTicket/releases/download/v${OST_VERSION}/osTicket-v${OST_VERSION}.zip
 echo "Extracting..."
 unzip osTicket-v${OST_VERSION}.zip
-mv upload/* /usr/html
+cp -rf upload/* /usr/html/
 mv /usr/html/include/ost-sampleconfig.php /usr/html/include/ost-config.php
 rm -rf upload
 rm -rf scripts
