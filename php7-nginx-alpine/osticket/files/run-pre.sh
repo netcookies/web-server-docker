@@ -17,14 +17,14 @@ if [ -f "/usr/html/include/ost-config.php" ]; then
         mkdir -p /install
         cd /install
         mv /themes/theme.zip /install/theme.zip
-        unzip theme.zip
+        unzip -qq theme.zip
         mv /usr/html/include/ost-config.php /install/upload/include/ost-config.php
         cp -rf /install/upload/* /usr/html/
         rm -rf /install
         echo "Theme install successful."
     fi
     if [ 1 -eq $(grep -c "define('OSTINSTALLED',TRUE);" /usr/html/include/ost-config.php) ]; then
-        rm -rf /usr/html/setup/install.php
+        rm -rf /usr/html/setup/
         rm -rf /usr/html/include/ost-sampleconfig.php
         exit 0
     fi
@@ -38,7 +38,7 @@ fi
 echo "Start downloading..."
 wget https://github.com/osTicket/osTicket/releases/download/v${OST_VERSION}/osTicket-v${OST_VERSION}.zip
 echo "Extracting..."
-unzip osTicket-v${OST_VERSION}.zip
+unzip -qq osTicket-v${OST_VERSION}.zip
 cp -rf upload/* /usr/html/
 mv /usr/html/include/ost-sampleconfig.php /usr/html/include/ost-config.php
 rm -rf upload

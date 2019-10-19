@@ -16,5 +16,6 @@ ADD files/run-pre.sh /
 RUN chmod +x /run-pre.sh
 
 EXPOSE 80
+VOLUME ["/usr"]
 
 CMD ["/run.sh"]
