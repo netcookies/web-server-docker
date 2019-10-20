@@ -36,7 +36,7 @@ if [ -z "$OST_VERSION" ]; then
 fi
 
 echo "Start downloading..."
-wget https://github.com/osTicket/osTicket/releases/download/v${OST_VERSION}/osTicket-v${OST_VERSION}.zip
+curl -OL https://github.com/osTicket/osTicket/releases/download/v${OST_VERSION}/osTicket-v${OST_VERSION}.zip
 echo "Extracting..."
 unzip -qq osTicket-v${OST_VERSION}.zip
 cp -rf upload/* /usr/html/
